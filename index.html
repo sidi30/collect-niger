@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soutien Scolaire Niger - Aidez les élèves avec des fournitures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar {
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .donation-option.active {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-pencil-alt text-blue-500 text-3xl mr-3"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Soutien Scolaire Niger</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="cart-button" class="relative p-2 text-gray-600 hover:text-blue-500">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition">
+                    Faire un don
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Aidez les élèves du Niger à réussir</h4>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Chaque don de fournitures scolaires fait la différence dans la vie d'un enfant. 
+                Choisissez les articles que vous souhaitez offrir ou faites un don libre.
+            </p>
+            
+            <div class="max-w-3xl mx-auto bg-white bg-opacity-20 rounded-lg p-6 backdrop-blur-sm">
+                <h3 class="text-2xl font-semibold mb-4">Objectif de collecte</h3>
+                <div class="mb-2 flex justify-between text-sm">
+                    <span>25 000€ collectés</span>
+                    <span>Objectif: 50 000€</span>
+                </div>
+                <div class="progress-bar mb-6">
+                    <div class="progress-fill" style="width: 50%"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
+                        <div class="text-2xl font-bold">1,248</div>
+                        <div class="text-sm">Cahiers offerts</div>
+                    </div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
+                        <div class="text-2xl font-bold">892</div>
+                        <div class="text-sm">Stylos offerts</div>
+                    </div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
+                        <div class="text-2xl font-bold">437</div>
+                        <div class="text-sm">Tenues offertes</div>
+                    </div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
+                        <div class="text-2xl font-bold">56</div>
+                        <div class="text-sm">Écoles aidées</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Donation Options -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Comment souhaitez-vous aider ?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="donation-option border-2 border-gray-200 rounded-xl p-6 cursor-pointer transition active" data-option="items">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-box-open text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Choisir des fournitures</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Sélectionnez les articles scolaires que vous souhaitez offrir aux élèves. 
+                        Vous pouvez ajouter plusieurs articles à votre panier.
+                    </p>
+                </div>
+                
+                <div class="donation-option border-2 border-gray-200 rounded-xl p-6 cursor-pointer transition" data-option="amount">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-hand-holding-usd text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Don libre</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Faites un don d'un montant libre qui sera utilisé pour acheter les fournitures 
+                        les plus nécessaires ou pour soutenir d'autres besoins scolaires.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Items Section -->
+        <section id="items-section">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Fournitures scolaires disponibles</h2>
+                <div class="relative">
+                    <select class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>Trier par: Pertinence</option>
+                        <option>Prix croissant</option>
+                        <option>Prix décroissant</option>
+                        <option>Plus populaires</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Item 1 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Cahiers" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Populaire
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Pack de 10 cahiers</h3>
+                        <p class="text-gray-600 text-sm mb-3">Cahiers 96 pages, format A4</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">15€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="1" data-name="Pack de 10 cahiers" data-price="15">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1588514899099-e2df6951dde6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Stylos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Pack de 20 stylos</h3>
+                        <p class="text-gray-600 text-sm mb-3">Stylos bleus à bille</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">8€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="2" data-name="Pack de 20 stylos" data-price="8">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Tenue scolaire" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Tenue scolaire</h3>
+                        <p class="text-gray-600 text-sm mb-3">Uniforme complet (haut + bas)</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">25€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="3" data-name="Tenue scolaire" data-price="25">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Livres" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Pack de 5 livres</h3>
+                        <p class="text-gray-600 text-sm mb-3">Manuels scolaires de base</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">30€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="4" data-name="Pack de 5 livres" data-price="30">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Sac à dos" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Sac à dos scolaire</h3>
+                        <p class="text-gray-600 text-sm mb-3">Sac résistant avec compartiments</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">18€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="5" data-name="Sac à dos scolaire" data-price="18">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Calculatrice" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Calculatrice scientifique</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pour lycéens et collégiens</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">22€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="6" data-name="Calculatrice scientifique" data-price="22">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1564466809058-bf4114d55352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Géométrie" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Kit de géométrie</h3>
+                        <p class="text-gray-600 text-sm mb-3">Compas, équerre, rapporteur</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">12€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="7" data-name="Kit de géométrie" data-price="12">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1631729371254-43c2a0e7106a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Crayons" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Pack de crayons et feutres</h3>
+                        <p class="text-gray-600 text-sm mb-3">24 crayons de couleur + 12 feutres</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">14€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="8" data-name="Pack de crayons et feutres" data-price="14">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Free Donation Section (Hidden by default) -->
+        <section id="free-donation-section" class="hidden max-w-2xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Faire un don libre</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="mb-6">
+                    <label for="donation-amount" class="block text-gray-700 font-medium mb-2">Montant du don (€)</label>
+                    <input type="number" id="donation-amount" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Montants suggérés</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="10">10€</button>
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="25">25€</button>
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="50">50€</button>
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="75">75€</button>
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="100">100€</button>
+                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="150">150€</button>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="donation-message" class="block text-gray-700 font-medium mb-2">Message (optionnel)</label>
+                    <textarea id="donation-message" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Un message d'encouragement pour les élèves..."></textarea>
+                </div>
+                
+                <button id="add-free-donation" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
+                    Ajouter au panier
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800">Votre sélection</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-6">
+                <div id="cart-items">
+                    <!-- Cart items will be added here dynamically -->
+                    <div class="text-center text-gray-500 py-10">
+                        <i class="fas fa-shopping-cart text-4xl mb-3"></i>
+                        <p>Votre panier est vide</p>
+                    </div>
+                </div>
+                
+                <div id="free-donation-item" class="hidden cart-item bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-medium">Don libre</h4>
+                            <p id="free-donation-amount" class="text-sm text-gray-600"></p>
+                        </div>
+                        <div class="flex items-center">
+                            <span id="free-donation-price" class="font-bold text-blue-500 mr-4"></span>
+                            <button class="remove-item text-gray-400 hover:text-red-500">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-gray-200">
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-600">Total</span>
+                    <span id="cart-total" class="font-bold text-xl text-blue-500">0€</span>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="donor-name" class="block text-gray-700 font-medium mb-2">Votre nom (optionnel)</label>
+                    <input type="text" id="donor-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nom ou anonyme">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Méthode de paiement</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="payment-method bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition flex items-center justify-center">
+                            <i class="fab fa-paypal text-blue-500 mr-2"></i>
+                            PayPal
+                        </button>
+                        <button class="payment-method bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-blue-500 mr-2"></i>
+                            Nita
+                        </button>
+                    </div>
+                </div>
+                
+                <button id="checkout-button" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
+                    Payer maintenant
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <!-- Modal de paiement Lydia -->
+    <div id="payment-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 relative overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800">Finaliser votre don</h3>
+                <button class="close-modal absolute top-6 right-6 text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="payment-loading" class="p-6 text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                <p class="text-gray-600">Préparation du paiement...</p>
+            </div>
+            
+            <form id="payment-form" class="p-6 hidden">
+                <div id="payment-element" class="mb-6"><!-- Rempli dynamiquement --></div>
+                
+                <div id="payment-message" class="hidden text-center text-sm py-2 rounded-md mb-4 bg-blue-100 text-blue-800"></div>
+                
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-gray-600">Total à payer:</span>
+                    <span id="payment-total" class="font-bold text-xl text-blue-500">0€</span>
+                </div>
+                
+                <button type="submit" id="payment-submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
+                    Payer maintenant
+                </button>
+            </form>
+            
+            <div id="payment-success" class="p-6 hidden text-center">
+                <div class="bg-green-100 rounded-full p-4 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
+                    <i class="fas fa-check text-2xl text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Merci pour votre soutien !</h3>
+                <p class="text-gray-600 mb-4">Votre don a bien été pris en compte.</p>
+                <button class="close-modal w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 rounded-lg font-medium transition">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay modal -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Soutien Scolaire Niger</h3>
+                    <p class="text-gray-300">
+                        Nous aidons les élèves du Niger à accéder à l'éducation en fournissant 
+                        le matériel scolaire nécessaire pour leur réussite.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                            contact@soutienscolaireniger.org
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-blue-400"></i>
+                            +227 80 123 4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
+                            Niamey, Niger
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Suivez-nous</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-700 hover:bg-blue-600 h-10 w-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-blue-400 h-10 w-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-pink-600 h-10 w-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p> 2023 Soutien Scolaire Niger. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="lydia.js"></script>
+    <script>
+        // Cart functionality
+        let cart = [];
+        
+        // DOM Elements
+        const cartButton = document.getElementById('cart-button');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const closeCart = document.getElementById('close-cart');
+        const overlay = document.getElementById('overlay');
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutButton = document.getElementById('checkout-button');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const donationOptions = document.querySelectorAll('.donation-option');
+        const itemsSection = document.getElementById('items-section');
+        const freeDonationSection = document.getElementById('free-donation-section');
+        const suggestedAmounts = document.querySelectorAll('.suggested-amount');
+        const donationAmountInput = document.getElementById('donation-amount');
+        const addFreeDonationButton = document.getElementById('add-free-donation');
+        const freeDonationItem = document.getElementById('free-donation-item');
+        const freeDonationPrice = document.getElementById('free-donation-price');
+        const freeDonationAmount = document.getElementById('free-donation-amount');
+        
+        // Toggle cart sidebar
+        cartButton.addEventListener('click', () => {
+            cartSidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        overlay.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Donation options
+        donationOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Update active state
+                donationOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Show corresponding section
+                const selectedOption = option.dataset.option;
+                if (selectedOption === 'items') {
+                    itemsSection.classList.remove('hidden');
+                    freeDonationSection.classList.add('hidden');
+                } else {
+                    itemsSection.classList.add('hidden');
+                    freeDonationSection.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Suggested amounts
+        suggestedAmounts.forEach(button => {
+            button.addEventListener('click', () => {
+                suggestedAmounts.forEach(btn => btn.classList.remove('bg-blue-100', 'text-blue-700'));
+                button.classList.add('bg-blue-100', 'text-blue-700');
+                donationAmountInput.value = button.dataset.amount;
+            });
+        });
+        
+        // Add items to cart
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                const name = button.dataset.name;
+                const price = parseFloat(button.dataset.price);
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                showAddedToCartFeedback(button);
+            });
+        });
+        
+        // Add free donation to cart
+        addFreeDonationButton.addEventListener('click', () => {
+            const amount = parseFloat(donationAmountInput.value);
+            
+            if (isNaN(amount) || amount <= 0) {
+                alert('Veuillez entrer un montant valide');
+                return;
+            }
+            
+            // Remove any existing free donation
+            cart = cart.filter(item => item.id !== 'free-donation');
+            
+            // Add new free donation
+            cart.push({
+                id: 'free-donation',
+                name: 'Don libre',
+                price: amount,
+                quantity: 1,
+                message: document.getElementById('donation-message').value
+            });
+            
+            updateCart();
+            cartSidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Update cart UI
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center text-gray-500 py-10">
+                        <i class="fas fa-shopping-cart text-4xl mb-3"></i>
+                        <p>Votre panier est vide</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = '';
+                
+                cart.forEach(item => {
+                    if (item.id === 'free-donation') {
+                        freeDonationItem.classList.remove('hidden');
+                        freeDonationPrice.textContent = `${item.price}€`;
+                        freeDonationAmount.textContent = item.message ? `"${item.message}"` : 'Aucun message';
+                        
+                        // Add remove functionality
+                        const removeButton = freeDonationItem.querySelector('.remove-item');
+                        removeButton.onclick = () => {
+                            cart = cart.filter(i => i.id !== 'free-donation');
+                            updateCart();
+                        };
+                        
+                        return;
+                    }
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200';
+                    itemElement.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-medium">${item.name}</h4>
+                                <p class="text-sm text-gray-600">${item.price}€ × ${item.quantity}</p>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-bold text-blue-500 mr-4">${(item.price * item.quantity).toFixed(2)}€</span>
+                                <div class="flex items-center">
+                                    <button class="decrease-quantity text-gray-400 hover:text-blue-500 mr-2" data-id="${item.id}">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button class="increase-quantity text-gray-400 hover:text-blue-500 mr-2" data-id="${item.id}">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button class="remove-item text-gray-400 hover:text-red-500" data-id="${item.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(itemElement);
+                });
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.currentTarget.dataset.id;
+                        const item = cart.find(item => item.id === id);
+                        
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                        } else {
+                            cart = cart.filter(item => item.id !== id);
+                        }
+                        
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.currentTarget.dataset.id;
+                        const item = cart.find(item => item.id === id);
+                        item.quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.currentTarget.dataset.id;
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `${total.toFixed(2)}€`;
+            
+            // Update free donation section
+            const hasFreeDonation = cart.some(item => item.id === 'free-donation');
+            if (!hasFreeDonation) {
+                freeDonationItem.classList.add('hidden');
+            }
+        }
+        
+        // Show feedback when item is added to cart
+        function showAddedToCartFeedback(button) {
+            const originalText = button.textContent;
+            button.textContent = 'Ajouté !';
+            button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+            button.classList.add('bg-green-500', 'hover:bg-green-600');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500', 'hover:bg-green-600');
+                button.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }, 2000);
+        }
+        
+        // Checkout button
+        checkoutButton.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Votre panier est vide');
+                return;
+            }
+            
+            // Ouvrir la modal de paiement Lydia
+            openPaymentModal();
+            
+            // Fermer le panier
+            cartSidebar.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+    </script>
+    
+    <!-- Script Lydia pour le paiement -->
+    <script src="lydia.js"></script>
+    
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=sir30/collecte-niger" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p>
+</body>
+</html>
