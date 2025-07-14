@@ -64,30 +64,47 @@
             </p>
             
             <div class="max-w-3xl mx-auto bg-white bg-opacity-20 rounded-lg p-6 backdrop-blur-sm">
-                <h3 class="text-2xl font-semibold mb-4">Objectif de collecte</h3>
-                <div class="mb-2 flex justify-between text-sm">
-                    <span>25 000€ collectés</span>
-                    <span>Objectif: 50 000€</span>
+                <h3 class="text-2xl font-semibold mb-3">Dons récoltés</h3>
+                
+                <div class="bg-blue-600 bg-opacity-40 p-4 rounded-lg mb-4 text-center border-2 border-white border-opacity-25 shadow-lg">
+                    <h4 class="text-white text-lg mb-1">Somme totale récoltée</h4>
+                    <div class="text-4xl font-bold text-white mb-2">250 €</div>
+                    <div class="text-sm text-white">Grâce à la générosité de <span class="font-bold">12 donateurs</span></div>
                 </div>
-                <div class="progress-bar mb-6">
+                
+                <p class="text-white text-lg mb-4 leading-relaxed">
+                    <strong class="text-yellow-200">Chaque enfant mérite une chance égale de réussir.</strong> 
+                    Aujourd'hui au Niger, trop d'élèves n'ont pas accès aux fournitures scolaires de base.
+                    <span class="font-semibold">Votre don offre plus qu'un stylo ou un cahier — il donne espoir et opportunité.</span>
+                </p>
+                
+                <div class="mb-2 flex justify-between text-sm font-semibold">
+                    <span class="bg-white bg-opacity-30 px-3 py-1 rounded-full">250€ récoltés</span>
+                    <span class="bg-white bg-opacity-30 px-3 py-1 rounded-full">Objectif: 50000€</span>
+                </div>
+                
+                <div class="progress-bar mb-6 h-3">
                     <div class="progress-fill" style="width: 50%"></div>
                 </div>
+                
+                <h4 class="text-center text-lg font-medium mb-3 mt-2">Impact de vos dons</h4>
+                
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
-                        <div class="text-2xl font-bold">1,248</div>
-                        <div class="text-sm">Cahiers offerts</div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg transform hover:scale-105 transition-transform">
+                        <div class="text-2xl font-bold text-center">15</div>
+                        <div class="text-sm text-center">Kits scolaires distribués</div>
                     </div>
-                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
-                        <div class="text-2xl font-bold">892</div>
-                        <div class="text-sm">Stylos offerts</div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg transform hover:scale-105 transition-transform">
+                        <div class="text-2xl font-bold text-center">254</div>
+                        <div class="text-sm text-center">Packs de stylos offerts</div>
                     </div>
-                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
-                        <div class="text-2xl font-bold">437</div>
-                        <div class="text-sm">Tenues offertes</div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg transform hover:scale-105 transition-transform">
+                        <div class="text-2xl font-bold text-center">5</div>
+                        <div class="text-sm text-center">Sacs à dos fournis</div>
                     </div>
-                    <div class="bg-white bg-opacity-30 p-3 rounded-lg">
-                        <div class="text-2xl font-bold">56</div>
-                        <div class="text-sm">Écoles aidées</div>
+                    <div class="bg-white bg-opacity-30 p-3 rounded-lg transform hover:scale-105 transition-transform">
+                        <div class="text-2xl font-bold text-center">3</div>
+                        <div class="text-sm text-center">Écoles soutenues</div>
                     </div>
                 </div>
             </div>
@@ -150,14 +167,14 @@
                 <!-- Item 1 -->
                 <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Cahiers" class="w-full h-48 object-cover">
+                        <img src="images/ensemble.png" alt="Ensemble scolaire" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                         <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
                             Populaire
                         </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Pack de 10 cahiers</h3>
-                        <p class="text-gray-600 text-sm mb-3">Cahiers 96 pages, format A4</p>
+                        <h3 class="font-bold text-lg mb-1">kit scolaire</h3>
+                        <p class="text-gray-600 text-sm mb-3">Cahier, stylo, gourde,trouce et ensemble géométrique</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-blue-500">15€</span>
                             <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="1" data-name="Pack de 10 cahiers" data-price="15">
@@ -168,47 +185,13 @@
                 </div>
 
                 <!-- Item 2 -->
-                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                  <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1588514899099-e2df6951dde6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Stylos" class="w-full h-48 object-cover">
+                        <img src="images/fourniture2.png" alt="Livres" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Pack de 20 stylos</h3>
-                        <p class="text-gray-600 text-sm mb-3">Stylos bleus à bille</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">8€</span>
-                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="2" data-name="Pack de 20 stylos" data-price="8">
-                                Ajouter
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Tenue scolaire" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Tenue scolaire</h3>
-                        <p class="text-gray-600 text-sm mb-3">Uniforme complet (haut + bas)</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">25€</span>
-                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="3" data-name="Tenue scolaire" data-price="25">
-                                Ajouter
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Livres" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Pack de 5 livres</h3>
-                        <p class="text-gray-600 text-sm mb-3">Manuels scolaires de base</p>
+                        <h3 class="font-bold text-lg mb-1">Kit scolaire + Sac</h3>
+                        <p class="text-gray-600 text-sm mb-3">Cahier, stylo, gourde,trouce et ensemble géométrique + sac à dos</p>
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-blue-500">30€</span>
                             <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="4" data-name="Pack de 5 livres" data-price="30">
@@ -218,16 +201,65 @@
                     </div>
                 </div>
 
+                <!-- Item 3 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="images/Calculatrice.jpg" alt="Calculatrice" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Calculatrice scientifique</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pour lycéens et collégiens</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">7€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="6" data-name="Calculatrice scientifique" data-price="22">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="images/BIC_bleu.jpg" alt="Tenue scolaire" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Stylos pack 50</h3>
+                        <p class="text-gray-600 text-sm mb-3">Stylos bleus ou noirs</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">10€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="3" data-name="Tenue scolaire" data-price="25">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+         <!-- Item 4 -->
+                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
+                    <div class="relative">
+                        <img src="images/Gourde.png" alt="Gourde" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Gourde</h3>
+                        <p class="text-gray-600 text-sm mb-3">Gourde scolaire</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-500">5€</span>
+                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="4" data-name="Pack de 5 livres" data-price="30">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+             
+
                 <!-- Item 5 -->
                 <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Sac à dos" class="w-full h-48 object-cover">
+                        <img src="images/sac.png" alt="Sac à dos" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Sac à dos scolaire</h3>
                         <p class="text-gray-600 text-sm mb-3">Sac résistant avec compartiments</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">18€</span>
+                            <span class="font-bold text-blue-500">12€</span>
                             <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="5" data-name="Sac à dos scolaire" data-price="18">
                                 Ajouter
                             </button>
@@ -236,32 +268,18 @@
                 </div>
 
                 <!-- Item 6 -->
-                <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Calculatrice" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Calculatrice scientifique</h3>
-                        <p class="text-gray-600 text-sm mb-3">Pour lycéens et collégiens</p>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">22€</span>
-                            <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="6" data-name="Calculatrice scientifique" data-price="22">
-                                Ajouter
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- Item 7 -->
                 <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1564466809058-bf4114d55352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Géométrie" class="w-full h-48 object-cover">
+                        <img src="images/trousse.jpg" alt="Géométrie" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Kit de géométrie</h3>
-                        <p class="text-gray-600 text-sm mb-3">Compas, équerre, rapporteur</p>
+                        <h3 class="font-bold text-lg mb-1">trousse</h3>
+                        <p class="text-gray-600 text-sm mb-3">trousse scolaire</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">12€</span>
+                            <span class="font-bold text-blue-500">3€</span>
                             <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="7" data-name="Kit de géométrie" data-price="12">
                                 Ajouter
                             </button>
@@ -272,13 +290,13 @@
                 <!-- Item 8 -->
                 <div class="item-card bg-white rounded-xl shadow-md overflow-hidden transition cursor-pointer">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1631729371254-43c2a0e7106a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Crayons" class="w-full h-48 object-cover">
+                        <img src="images/Crayon-Papier.png" alt="Crayons" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-4">
-                        <h3 class="font-bold text-lg mb-1">Pack de crayons et feutres</h3>
-                        <p class="text-gray-600 text-sm mb-3">24 crayons de couleur + 12 feutres</p>
+                        <h3 class="font-bold text-lg mb-1">Crayons et feutres</h3>
+                        <p class="text-gray-600 text-sm mb-3">Crayons de couleur + feutres</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-blue-500">14€</span>
+                            <span class="font-bold text-blue-500">2€</span>
                             <button class="add-to-cart bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm transition" data-id="8" data-name="Pack de crayons et feutres" data-price="14">
                                 Ajouter
                             </button>
@@ -454,11 +472,11 @@
                     <ul class="space-y-2">
                         <li class="flex items-center">
                             <i class="fas fa-envelope mr-2 text-blue-400"></i>
-                            contact@soutienscolaireniger.org
+                            contact@gwani.fr
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone mr-2 text-blue-400"></i>
-                            +227 80 123 4567
+                            0033753569548
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
@@ -482,7 +500,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p> 2023 Soutien Scolaire Niger. Tous droits réservés.</p>
+                <p> 2025 Soutien Scolaire Niger. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -752,6 +770,5 @@
     <!-- Script Lydia pour le paiement -->
     <script src="lydia.js"></script>
     
-<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=sir30/collecte-niger" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p>
 </body>
 </html>
