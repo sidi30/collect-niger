@@ -105,8 +105,8 @@
                 
                 <div class="bg-blue-600 bg-opacity-40 p-4 rounded-lg mb-4 text-center border-2 border-white border-opacity-25 shadow-lg">
                     <h4 class="text-white text-lg mb-1">Somme totale récoltée</h4>
-                    <div class="text-4xl font-bold text-white mb-2">250 €</div>
-                    <div class="text-sm text-white">Grâce à la générosité de <span class="font-bold">12 donateurs</span></div>
+                    <div id="donation-amount" class="text-4xl font-bold text-white mb-2">250 €</div>
+                    <div class="text-sm text-white">Grâce à la générosité de <span id="donor-count" class="font-bold">12 donateurs</span></div>
                 </div>
                 
                 <p class="text-white text-lg mb-4 leading-relaxed">
@@ -116,12 +116,12 @@
                 </p>
                 
                 <div class="mb-2 flex justify-between text-sm font-semibold">
-                    <span class="bg-white bg-opacity-30 px-3 py-1 rounded-full">250€ récoltés</span>
+                    <span id="progress-collected" class="bg-white bg-opacity-30 px-3 py-1 rounded-full">250€ récoltés</span>
                     <span class="bg-white bg-opacity-30 px-3 py-1 rounded-full">Objectif: 50000€</span>
                 </div>
                 
                 <div class="progress-bar mb-6 h-3">
-                    <div class="progress-fill" style="width: 10%"></div>
+                    <div id="progress-fill" class="progress-fill" style="width: 10%"></div>
                 </div>
                 
                 <h4 class="text-center text-lg font-medium mb-3 mt-2">Impact de vos dons</h4>
@@ -955,6 +955,97 @@
                 }
             });
         });
+    </script>
+
+    <!-- Script d'incrémentation progressive et continue des dons -->
+    <script>
+        // Fonction pour initialiser les valeurs à partir du localStorage ou des valeurs par défaut
+        function initDonationValues() {
+            // Récupérer les valeurs sauvegardées ou utiliser les valeurs par défaut
+            const savedAmount = parseFloat(localStorage.getItem('donationAmount')) || 250;
+            const savedDonors = parseInt(localStorage.getItem('donorCount')) || 12;
+            const lastDate = localStorage.getItem('lastDonationDate');
+            const today = new Date().toDateString();
+            
+            // Vérifier si c'est un nouveau jour pour ajouter le bonus journalier
+            if (lastDate !== today) {
+                localStorage.setItem('lastDonationDate', today);
+                localStorage.setItem('donationAmount', savedAmount + 20); // Bonus de début de journée
+                localStorage.setItem('donorCount', savedDonors + 1); // Bonus donateur du jour
+            }
+            
+            return {
+                amount: parseFloat(localStorage.getItem('donationAmount')) || savedAmount,
+                donors: parseInt(localStorage.getItem('donorCount')) || savedDonors,
+                targetAmount: 50000
+            };
+        }
+        
+        // Fonction pour formater les montants avec le symbole euro
+        function formatAmount(amount) {
+            return Math.round(amount) + ' €';
+        }
+        
+        // Fonction pour mettre à jour les éléments visuels
+        function updateDonationDisplay(amount, donors, targetAmount) {
+            // Mettre à jour les éléments d'affichage
+            document.getElementById('donation-amount').textContent = formatAmount(amount);
+            document.getElementById('donor-count').textContent = donors + ' donateurs';
+            document.getElementById('progress-collected').textContent = Math.round(amount) + '€ récoltés';
+            
+            // Mettre à jour la barre de progression
+            const percentage = (amount / targetAmount) * 100;
+            document.getElementById('progress-fill').style.width = Math.min(100, percentage) + '%';
+        }
+        
+        // Fonction principale d'animation et d'incrémentation continue
+        function startProgressiveIncrement() {
+            // Initialiser les valeurs
+            const values = initDonationValues();
+            let currentAmount = values.amount;
+            let currentDonors = values.donors;
+            const targetAmount = values.targetAmount;
+            
+            // Paramètres d'incrémentation
+            const dailyAmountIncrement = 50; // 50€ par jour
+            const dailyDonorsIncrement = 2; // 2 donateurs par jour
+            const refreshInterval = 5000; // Toutes les 5 secondes
+            const updateInterval = 24 * 60 * 60 * 1000 / (refreshInterval); // Nombre d'intervalles dans une journée
+            
+            // Calculer les petits incréments pour chaque intervalle
+            const smallAmountIncrement = dailyAmountIncrement / updateInterval;
+            const donorProbability = dailyDonorsIncrement / updateInterval;
+            
+            // Mettre à jour l'affichage initial
+            updateDonationDisplay(currentAmount, currentDonors, targetAmount);
+            
+            // Lancer l'incrémentation progressive
+            setInterval(() => {
+                // Incrémenter le montant progressivement
+                currentAmount += smallAmountIncrement;
+                
+                // Occasionnellement incrémenter le nombre de donateurs (basé sur une probabilité)
+                if (Math.random() < donorProbability) {
+                    currentDonors += 1;
+                }
+                
+                // Mettre à jour l'affichage
+                updateDonationDisplay(currentAmount, currentDonors, targetAmount);
+                
+                // Sauvegarder les valeurs
+                localStorage.setItem('donationAmount', currentAmount);
+                localStorage.setItem('donorCount', currentDonors);
+                
+            }, refreshInterval);
+        }
+        
+        // Lancer le processus d'incrémentation quand la page est chargée
+        document.addEventListener('DOMContentLoaded', startProgressiveIncrement);
+        
+        // Pour réinitialiser les valeurs (décommenter pour tester)
+        // localStorage.removeItem('donationAmount');
+        // localStorage.removeItem('donorCount');
+        // localStorage.removeItem('lastDonationDate');
     </script>
 </body>
 </html>
