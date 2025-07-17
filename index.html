@@ -62,7 +62,9 @@
                     <i class="fas fa-shopping-cart text-2xl"></i>
                     <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                 </button>
-            
+                <button class="donation-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hidden md:block" data-amount="20">
+                    <i class="fas fa-donate mr-1"></i> Faire un don
+                </button>
             </div>
         </div>
         
@@ -122,6 +124,24 @@
                 
                 <div class="progress-bar mb-6 h-3">
                     <div id="progress-fill" class="progress-fill" style="width: 10%"></div>
+                </div>
+                
+                <!-- Boutons de don directs -->
+                <div id="donation-button-container" class="my-6">
+                    <h4 class="text-center text-lg font-medium mb-3">Faire un don maintenant</h4>
+                    
+                    <div class="flex flex-wrap justify-center gap-3 mb-3">
+                        <button class="donation-button bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors" data-amount="10">
+                            <i class="fas fa-donate mr-2"></i>10€
+                        </button>
+                        <button class="donation-button bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors" data-amount="20">
+                            <i class="fas fa-donate mr-2"></i>20€
+                        </button>
+                        <button class="donation-button bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors" data-amount="50">
+                            <i class="fas fa-donate mr-2"></i>50€
+                        </button>
+                    </div>
+                    
                 </div>
                 
                 <h4 class="text-center text-lg font-medium mb-3 mt-2">Impact de vos dons</h4>
@@ -438,31 +458,8 @@
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Faire un don libre</h2>
             
             <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="mb-6">
-                    <label for="donation-amount" class="block text-gray-700 font-medium mb-2">Montant du don (€)</label>
-                    <input type="number" id="donation-amount" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant">
-                </div>
-                
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">Montants suggérés</label>
-                    <div class="grid grid-cols-3 gap-3">
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="10">10€</button>
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="25">25€</button>
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="50">50€</button>
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="75">75€</button>
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="100">100€</button>
-                        <button class="suggested-amount bg-gray-100 hover:bg-blue-100 text-gray-800 py-2 px-4 rounded-lg transition" data-amount="150">150€</button>
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <label for="donation-message" class="block text-gray-700 font-medium mb-2">Message (optionnel)</label>
-                    <textarea id="donation-message" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Un message d'encouragement pour les élèves..."></textarea>
-                </div>
-                
-                <button id="add-free-donation" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
-                    Ajouter au panier
-                </button>
+                <iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/association-des-nigeriens-et-amis-grand-nord-france/formulaires/16/widget-bouton" style="width: 100%; height: 70px; border: none;"></iframe>
+
             </div>
         </section>
     </main>
@@ -519,11 +516,11 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
 
-    <!-- Modal de paiement Lydia -->
+    <!-- Modal de paiement HelloAsso -->
     <div id="payment-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4 relative overflow-hidden">
             <div class="p-6 border-b border-gray-200">
-                <h3 class="text-xl font-bold text-gray-800">Finaliser votre don</h3>
+                <h3 class="text-xl font-bold text-gray-800">Finaliser votre don avec HelloAsso</h3>
                 <button class="close-modal absolute top-6 right-6 text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
@@ -534,20 +531,25 @@
                 <p class="text-gray-600">Préparation du paiement...</p>
             </div>
             
-            <form id="payment-form" class="p-6 hidden">
-                <div id="payment-element" class="mb-6"><!-- Rempli dynamiquement --></div>
-                
-                <div id="payment-message" class="hidden text-center text-sm py-2 rounded-md mb-4 bg-blue-100 text-blue-800"></div>
-                
-                <div class="flex justify-between items-center mb-6">
+            <div id="payment-form" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-4">
                     <span class="text-gray-600">Total à payer:</span>
                     <span id="payment-total" class="font-bold text-xl text-blue-500">0€</span>
                 </div>
                 
-                <button type="submit" id="payment-submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
-                    Payer maintenant
+                <div class="mb-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <div class="flex items-center mb-3">
+                        <img src="images/image.png" alt="HelloAsso" class="h-8 mr-3">
+                        <h4 class="text-blue-700 font-medium">Paiement sécurisé</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">En cliquant sur le bouton ci-dessous, vous serez redirigé vers HelloAsso pour finaliser votre don en toute sécurité.</p>
+                </div>
+                
+                
+                <button id="payment-redirect" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition">
+                    Continuer vers HelloAsso
                 </button>
-            </form>
+            </div>
             
             <div id="payment-success" class="p-6 hidden text-center">
                 <div class="bg-green-100 rounded-full p-4 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
@@ -1045,7 +1047,11 @@
         // Pour réinitialiser les valeurs (décommenter pour tester)
         // localStorage.removeItem('donationAmount');
         // localStorage.removeItem('donorCount');
-        // localStorage.removeItem('lastDonationDate');
+        // localStorage.removeItem('lastDonationDate');a
     </script>
+    
+    <!-- Scripts de paiement et donation -->
+    <script src="payment-simple.js"></script>
+    <script src="donation.js"></script>
 </body>
 </html>
